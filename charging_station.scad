@@ -10,11 +10,8 @@ num_sections = 5;
 
 tab_width = 10;
 
-module PowerSupplyMount()
+module FourHoles(x, y)
 {
-    x = 20.5;
-    y = 14.5;
-
     positions = [[x, y], [x, -y], [-x, y], [-x, -y]];
 
     for (p = positions)
@@ -27,10 +24,14 @@ module PowerSupplySectionPanel()
     difference()
     {
         SectionPanel();
+
+        translate([-40, -20])
+            FourHoles(8, 8);
+
         translate([10, 0])
-            PowerSupplyMount();
+            FourHoles(20.5, 14.5);
     }
-    }
+}
 
 module SectionPanel()
 {
