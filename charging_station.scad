@@ -10,13 +10,15 @@ num_sections = 5;
 
 tab_width = 10;
 
+hole_radius = 1.75;
+
 module FourHoles(x, y)
 {
     positions = [[x, y], [x, -y], [-x, y], [-x, -y]];
 
     for (p = positions)
         translate(p)
-            circle(r=1.6);
+            circle(r=hole_radius);
 }
 
 module PowerSupplySectionPanel()
@@ -29,7 +31,17 @@ module PowerSupplySectionPanel()
             FourHoles(8, 8);
 
         translate([10, 0])
-            FourHoles(20.5, 14.5);
+            FourHoles(22, 16);
+    }
+}
+
+module BottomFeetSectionPanel()
+{
+    difference()
+    {
+        SectionPanel();
+
+        FourHoles((section_x / 2) - 15, (section_y / 2) - 15);
     }
 }
 
